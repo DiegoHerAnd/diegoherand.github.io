@@ -1,0 +1,24 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #E7C9B1, #F2E6D8);
+  margin: 0;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.app {
+  text-align: center;
+}
+
+.titulo {
+  color: #800020;
+  margin-bottom: 40px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
