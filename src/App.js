@@ -1,18 +1,24 @@
 import React from "react";
-import Card from "./components/Card";
-import { arquitecturas } from "./components/data";
-import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import MinimalDynamicBlocks from "./MinimalDynamicBlocks";
+import MVCPage from "./components/pages/MVCPage";
+import MicroservicesPage from "./components/pages/MicroservicesPage";
+import SPAPage from "./components/pages/SPAPage";
+import MVVMPage from "./components/pages/MVVMPage";
+import ComparativeTablePage from "./components/pages/ComparativeTablePage";
 
 function App() {
   return (
-    <div className="app">
-      <h1 className="titulo">Modelo MVVM</h1>
-      <div className="container">
-        {arquitecturas.map((item, index) => (
-          <Card key={index} {...item} />
-        ))}
-      </div>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<MinimalDynamicBlocks />} />
+        <Route path="/mvc" element={<MVCPage />} />
+        <Route path="/microservicios" element={<MicroservicesPage />} />
+        <Route path="/spa" element={<SPAPage />} />
+        <Route path="/mvvm" element={<MVVMPage />} />
+        <Route path="/comparativa" element={<ComparativeTablePage />} />
+      </Routes>
+    </Router>
   );
 }
 
