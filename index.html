@@ -3,276 +3,494 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <title>Portfolio — Backend Dev</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="estilos.css"/>
 </head>
 <body>
 
-  <!-- ── VIDEO BACKGROUND ── -->
-  <div class="video-bg">
-    <video autoplay muted loop playsinline>
-      <source src="media/videos/fondo.MP4" type="video/mp4">
-    </video>
+<!-- ── TOPBAR ──────────────────────────────────────────── -->
+<div class="topbar">
+  <div class="topbar-dots">
+    <div class="dot dot-r"></div>
+    <div class="dot dot-y"></div>
+    <div class="dot dot-g"></div>
   </div>
-
-  <!-- ── THEME TOGGLE ── -->
-  <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">
-    <span class="toggle-icon" id="toggle-icon">☀️</span>
-    <span id="toggle-label">Claro</span>
-  </button>
-
-  <!-- ══════════════════════════════════════════
-       PANTALLA PRINCIPAL
-  ══════════════════════════════════════════ -->
-  <div class="screen active" id="main">
-
-    <!-- LEFT: lista de proyectos -->
-    <div class="projects-panel" id="projects-panel">
-
-      <div class="thumb thumb-1" onclick="openProject(0)">
-        <div class="thumb-left-bar"></div>
-        <div class="thumb-num">I</div>
-        <div class="thumb-arrow">↗</div>
-        <div class="thumb-label">
-          <div class="thumb-tag">Diseño Web · 2024</div>
-          <div class="thumb-title">Plataforma de Analítica Visual</div>
-        </div>
-      </div>
-
-      <div class="thumb thumb-2" onclick="openProject(1)">
-        <div class="thumb-left-bar"></div>
-        <div class="thumb-num">II</div>
-        <div class="thumb-arrow">↗</div>
-        <div class="thumb-label">
-          <div class="thumb-tag">Branding · 2024</div>
-          <div class="thumb-title">Identidad Visual Estudio Botánico</div>
-        </div>
-      </div>
-
-      <div class="thumb thumb-3" onclick="openProject(2)">
-        <div class="thumb-left-bar"></div>
-        <div class="thumb-num">III</div>
-        <div class="thumb-arrow">↗</div>
-        <div class="thumb-label">
-          <div class="thumb-tag">App Móvil · 2023</div>
-          <div class="thumb-title">App de Gestión Financiera</div>
-        </div>
-      </div>
-
-      <div class="thumb thumb-4" onclick="openProject(3)">
-        <div class="thumb-left-bar"></div>
-        <div class="thumb-num">IV</div>
-        <div class="thumb-arrow">↗</div>
-        <div class="thumb-label">
-          <div class="thumb-tag">Instalación · 2023</div>
-          <div class="thumb-title">Experiencia Interactiva</div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- RIGHT: index card -->
-    <div class="index-panel">
-      <div class="index-card">
-        <div class="index-card-topline"></div>
-
-        <div class="index-status">
-          <div class="status-dot"></div>
-          Disponible para proyectos
-        </div>
-
-        <div class="index-name">Álvaro<br/>García</div>
-        <div class="index-role">Designer &amp; Developer</div>
-
-        <p class="index-bio">
-          Diseñador y desarrollador con foco en experiencias digitales que equilibran forma y función. Creo interfaces que comunican con intención y permanecen en la memoria.
-        </p>
-
-        <div class="index-divider"></div>
-
-        <div class="index-skills">
-          <span class="skill-tag">UI/UX</span>
-          <span class="skill-tag">React</span>
-          <span class="skill-tag">Motion</span>
-          <span class="skill-tag">Figma</span>
-          <span class="skill-tag">CSS</span>
-          <span class="skill-tag">Branding</span>
-          <span class="skill-tag">TypeScript</span>
-          <span class="skill-tag">Node</span>
-        </div>
-
-        <div class="index-links">
-          <a href="#" class="index-link">Github <span class="link-arrow">↗</span></a>
-          <a href="#" class="index-link">LinkedIn <span class="link-arrow">↗</span></a>
-          <a href="#" class="index-link">Contacto <span class="link-arrow">↗</span></a>
-        </div>
-
-        <div class="index-counter">4 proyectos</div>
-
-      </div>
-    </div>
-
+  <div class="vault-name">⬡ <span>portfolio</span>.vault</div>
+  <div class="breadcrumb">
+    <span>vault</span>
+    <span class="sep">›</span>
+    <span class="current" id="breadcrumb-current">inicio</span>
   </div>
+</div>
 
-  <!-- ══════════════════════════════════════════
-       PANTALLA DE PROYECTO
-  ══════════════════════════════════════════ -->
-  <div class="screen" id="project">
+<!-- ── LAYOUT ──────────────────────────────────────────── -->
+<div class="layout">
 
-    <div class="project-topbar">
-      <button class="back-btn" onclick="goBack()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M19 12H5M12 5l-7 7 7 7"/>
-        </svg>
-        Volver al portfolio
-      </button>
-      <div class="topbar-id" id="project-id">Proyecto 01 / 04</div>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-search">
+      <input type="text" id="search-input" placeholder="🔍  Buscar notas..." />
     </div>
 
-    <div class="project-body">
+    <nav class="sidebar-nav">
 
-      <div class="project-hero">
-        <div class="project-hero-bg" id="project-hero-bg"></div>
-        <div class="project-hero-overlay"></div>
-        <div class="project-hero-label">
-          <div class="hero-tag" id="project-tag"></div>
-          <div class="hero-title" id="project-title"></div>
+      <div class="nav-section">
+        <div class="nav-section-header open" onclick="toggleSection(this)">
+          <span class="arrow">▶</span> PERSONAL
+        </div>
+        <div class="nav-items">
+          <div class="nav-item active" onclick="navigate('inicio', this)">
+            <span class="icon">🏠</span> Inicio
+          </div>
+          <div class="nav-item" onclick="navigate('sobre-mi', this)">
+            <span class="icon">👤</span> Sobre mí
+          </div>
         </div>
       </div>
 
-      <div class="project-info">
-        <div class="info-block">
-          <div class="info-label">Descripción</div>
-          <div class="info-value" id="project-desc"></div>
+      <div class="nav-section">
+        <div class="nav-section-header open" onclick="toggleSection(this)">
+          <span class="arrow">▶</span> TRABAJO
         </div>
-        <div class="info-divider"></div>
-        <div class="info-block">
-          <div class="info-label">Mi rol</div>
-          <div class="info-value large" id="project-role"></div>
+        <div class="nav-items">
+          <div class="nav-item" onclick="navigate('proyectos', this)">
+            <span class="icon">📂</span> Proyectos
+          </div>
+          <div class="nav-item" onclick="navigate('experiencia', this)">
+            <span class="icon">📋</span> Experiencia
+          </div>
+          <div class="nav-item" onclick="navigate('skills', this)">
+            <span class="icon">⚙️</span> Skills
+          </div>
         </div>
-        <div class="info-block">
-          <div class="info-label">Año</div>
-          <div class="info-value" id="project-year"></div>
-        </div>
-        <div class="info-block">
-          <div class="info-label">Tecnologías</div>
-          <div class="info-tags" id="project-tags"></div>
-        </div>
-        <div class="info-divider"></div>
-        <a href="#" class="cta-btn">Ver proyecto completo →</a>
       </div>
 
+      <div class="nav-section">
+        <div class="nav-section-header open" onclick="toggleSection(this)">
+          <span class="arrow">▶</span> CONTACTO
+        </div>
+        <div class="nav-items">
+          <div class="nav-item" onclick="navigate('contacto', this)">
+            <span class="icon">✉️</span> Contacto
+          </div>
+        </div>
+      </div>
+
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="status-dot"></div>
+      6 notas · actualizado hoy
     </div>
-  </div>
+  </aside>
 
-  <script>
-    /* ── THEME TOGGLE ── */
-    let isLight = false;
+  <!-- MAIN -->
+  <main class="main">
 
-    function toggleTheme() {
-      isLight = !isLight;
-      document.body.classList.toggle('light', isLight);
-      document.getElementById('toggle-icon').textContent  = isLight ? '🌙' : '☀️';
-      document.getElementById('toggle-label').textContent = isLight ? 'Oscuro' : 'Claro';
-    }
+    <!-- ── PAGE: INICIO ──────────────────────── -->
+    <div class="page active" id="page-inicio">
+      <div class="content">
+        <div class="page-title">Bienvenido a mi vault</div>
+        <div class="page-meta">
+          <span>📅 2025-01-01</span>
+          <span>🏷️ #portfolio #backend</span>
+        </div>
 
-    /* ── DATOS DE PROYECTOS ── */
-    const projects = [
-      {
-        id: '01 / 04',
-        tag: 'Diseño Web · 2024',
-        title: 'Plataforma de\nAnalítica Visual',
-        bg: 'linear-gradient(135deg, #610000 0%, #101f47 100%)',
-        desc: 'Dashboard de analítica en tiempo real con visualizaciones complejas de datos. La plataforma procesa millones de eventos por hora y los presenta de forma clara e intuitiva para equipos de negocio.',
-        role: 'Diseño UI\n& Front-end',
-        year: '2024',
-        tags: ['React', 'D3.js', 'TypeScript', 'Figma', 'WebSockets']
-      },
-      {
-        id: '02 / 04',
-        tag: 'Branding · 2024',
-        title: 'Identidad Visual\nEstudio Botánico',
-        bg: 'linear-gradient(135deg, #101f47 0%, #2e3d1f 100%)',
-        desc: 'Proyecto de identidad completa para un estudio especializado en botánica urbana. Incluye sistema de marca, papelería, packaging y directrices digitales para una presencia coherente en todos los canales.',
-        role: 'Dirección\nCreativa',
-        year: '2024',
-        tags: ['Branding', 'Figma', 'Illustrator', 'Tipografía', 'Print']
-      },
-      {
-        id: '03 / 04',
-        tag: 'App Móvil · 2023',
-        title: 'App de Gestión\nFinanciera',
-        bg: 'linear-gradient(135deg, #2e3d1f 0%, #3d2410 100%)',
-        desc: 'Aplicación móvil para el seguimiento de finanzas personales con IA integrada para detectar patrones de gasto y sugerir hábitos de ahorro personalizados. Disponible en iOS y Android.',
-        role: 'UX Design\n& Prototipado',
-        year: '2023',
-        tags: ['Figma', 'React Native', 'Expo', 'AI/ML', 'Animación']
-      },
-      {
-        id: '04 / 04',
-        tag: 'Instalación · 2023',
-        title: 'Experiencia\nInteractiva',
-        bg: 'linear-gradient(135deg, #3d2410 0%, #610000 100%)',
-        desc: 'Instalación interactiva para espacio cultural que combina sensores de movimiento con proyección generativa. Los visitantes moldean la obra en tiempo real con su presencia, creando patrones únicos e irrepetibles.',
-        role: 'Creative Tech\n& Desarrollo',
-        year: '2023',
-        tags: ['p5.js', 'WebGL', 'Arduino', 'TouchDesigner', 'Generativo']
-      }
-    ];
+        <div class="callout">
+          <div class="callout-title">💡 nota</div>
+          <p>Este es mi portfolio personal. Aquí encontrarás mis proyectos, experiencia y habilidades como desarrollador backend.</p>
+        </div>
 
-    /* ── NAVEGACIÓN POR TECLADO ── */
-    const panel = document.getElementById('projects-panel');
-    const thumbs = () => panel.querySelectorAll('.thumb');
-    let focusedIdx = -1;
+        <h2>Quién soy</h2>
+        <p>Soy <strong style="color:var(--text-primary)">Alejandro García</strong>, desarrollador backend con más de 4 años de experiencia construyendo APIs robustas, sistemas distribuidos y arquitecturas escalables.</p>
+        <p>Me especializo en el ecosistema de <code>Node.js</code> y <code>Python</code>, con fuerte orientación hacia microservicios y buenas prácticas de ingeniería.</p>
 
-    function setFocus(idx) {
-      thumbs().forEach(t => t.classList.remove('is-focused'));
-      if (idx < 0 || idx >= thumbs().length) { focusedIdx = -1; return; }
-      focusedIdx = idx;
-      const t = thumbs()[focusedIdx];
-      t.classList.add('is-focused');
-      t.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-    }
+        <h2>Navegación rápida</h2>
+        <div class="skill-grid">
+          <div class="skill-card" onclick="navigate('sobre-mi', null)">
+            <div class="skill-card-label">→ nota</div>
+            <div class="skill-card-name">👤 Sobre mí</div>
+            <div class="skill-card-desc">Mi historia y motivaciones</div>
+          </div>
+          <div class="skill-card" onclick="navigate('proyectos', null)">
+            <div class="skill-card-label">→ nota</div>
+            <div class="skill-card-name">📂 Proyectos</div>
+            <div class="skill-card-desc">Lo que he construido</div>
+          </div>
+          <div class="skill-card" onclick="navigate('experiencia', null)">
+            <div class="skill-card-label">→ nota</div>
+            <div class="skill-card-name">📋 Experiencia</div>
+            <div class="skill-card-desc">Mi trayectoria profesional</div>
+          </div>
+          <div class="skill-card" onclick="navigate('skills', null)">
+            <div class="skill-card-label">→ nota</div>
+            <div class="skill-card-name">⚙️ Skills</div>
+            <div class="skill-card-desc">Stack técnico completo</div>
+          </div>
+        </div>
 
-    document.addEventListener('keydown', e => {
-      if (!document.getElementById('main').classList.contains('active')) return;
-      if (e.key === 'ArrowDown')       { e.preventDefault(); setFocus(focusedIdx < thumbs().length - 1 ? focusedIdx + 1 : 0); }
-      else if (e.key === 'ArrowUp')    { e.preventDefault(); setFocus(focusedIdx > 0 ? focusedIdx - 1 : thumbs().length - 1); }
-      else if (e.key === 'Enter' && focusedIdx >= 0) { openProject(focusedIdx); }
-      else if (e.key === 'Escape')     { setFocus(-1); }
-    });
+        <hr class="divider"/>
+        <div class="tags">
+          <span class="tag">#backend</span>
+          <span class="tag">#node.js</span>
+          <span class="tag">#python</span>
+          <span class="tag">#microservicios</span>
+          <span class="tag">#sql</span>
+          <span class="tag">#devops</span>
+        </div>
+      </div>
+    </div>
 
-    /* ── ABRIR PROYECTO ── */
-    function openProject(idx) {
-      const p = projects[idx];
-      document.getElementById('project-id').textContent            = 'Proyecto ' + p.id;
-      document.getElementById('project-tag').textContent           = p.tag;
-      document.getElementById('project-title').textContent         = p.title;
-      document.getElementById('project-hero-bg').style.background  = p.bg;
-      document.getElementById('project-desc').textContent          = p.desc;
-      document.getElementById('project-role').textContent          = p.role;
-      document.getElementById('project-year').textContent          = p.year;
+    <!-- ── PAGE: SOBRE MÍ ────────────────────── -->
+    <div class="page" id="page-sobre-mi">
+      <div class="content">
+        <div class="page-title">Sobre mí</div>
+        <div class="page-meta">
+          <span>📅 2025-01-01</span>
+          <span>🏷️ #personal</span>
+        </div>
 
-      const tagsEl = document.getElementById('project-tags');
-      tagsEl.innerHTML = '';
-      p.tags.forEach(tag => {
-        const el = document.createElement('span');
-        el.className = 'info-tag';
-        el.textContent = tag;
-        tagsEl.appendChild(el);
-      });
+        <p>Desarrollador backend apasionado por la ingeniería de software limpia y los sistemas que escalan. Me gusta resolver problemas complejos con soluciones elegantes y mantenibles.</p>
 
-      document.getElementById('main').classList.remove('active');
-      document.getElementById('project').classList.add('active');
-    }
+        <div class="callout">
+          <div class="callout-title">📍 ubicación</div>
+          <p>Madrid, España · Disponible para remoto</p>
+        </div>
 
-    /* ── VOLVER ── */
-    function goBack() {
-      document.getElementById('project').classList.remove('active');
-      document.getElementById('main').classList.add('active');
-    }
-  </script>
+        <h2>Enfoque</h2>
+        <p>Creo firmemente en escribir código que otros puedan leer y mantener. Mi filosofía es hacer las cosas simples primero, y añadir complejidad solo cuando es necesaria y justificada.</p>
+        <p>Tengo especial interés en el diseño de APIs, la observabilidad de sistemas y la automatización de procesos mediante CI/CD robusto.</p>
 
+        <h2>Fuera del trabajo</h2>
+        <p>Cuando no estoy programando, me encontrarás leyendo sobre sistemas distribuidos, contribuyendo a proyectos open source o explorando herramientas de productividad como <code>Obsidian</code>.</p>
+
+        <hr class="divider"/>
+        <div class="tags">
+          <span class="tag">#sobre-mi</span>
+          <span class="tag">#madrid</span>
+          <span class="tag green">#disponible</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PAGE: PROYECTOS ───────────────────── -->
+    <div class="page" id="page-proyectos">
+      <div class="content">
+        <div class="page-title">Proyectos</div>
+        <div class="page-meta">
+          <span>📅 2025-01-01</span>
+          <span>🏷️ #proyectos #código</span>
+        </div>
+
+        <p>Una selección de los proyectos más relevantes que he desarrollado, desde APIs en producción hasta herramientas internas.</p>
+
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-name">🔐 AuthService</div>
+            <div class="project-links">
+              <a href="#" class="project-link">GitHub</a>
+              <a href="#" class="project-link">Demo</a>
+            </div>
+          </div>
+          <div class="project-desc">Microservicio de autenticación con soporte OAuth2, JWT y refresh tokens. Maneja más de 50k peticiones/día en producción con latencia media &lt;20ms.</div>
+          <div class="project-stack">
+            <span class="stack-item">Node.js</span>
+            <span class="stack-item">TypeScript</span>
+            <span class="stack-item">PostgreSQL</span>
+            <span class="stack-item">Redis</span>
+            <span class="stack-item">Docker</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-name">📊 DataPipeline</div>
+            <div class="project-links">
+              <a href="#" class="project-link">GitHub</a>
+            </div>
+          </div>
+          <div class="project-desc">Pipeline de procesamiento de datos en tiempo real usando Kafka y Python. Procesa y transforma eventos de múltiples fuentes hacia un data warehouse centralizado.</div>
+          <div class="project-stack">
+            <span class="stack-item">Python</span>
+            <span class="stack-item">Apache Kafka</span>
+            <span class="stack-item">ClickHouse</span>
+            <span class="stack-item">Airflow</span>
+            <span class="stack-item">Kubernetes</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-name">🌐 GraphQL Gateway</div>
+            <div class="project-links">
+              <a href="#" class="project-link">GitHub</a>
+              <a href="#" class="project-link">Docs</a>
+            </div>
+          </div>
+          <div class="project-desc">API Gateway federado con GraphQL que unifica múltiples microservicios bajo un único schema. Incluye caching automático, rate limiting y monitoreo integrado.</div>
+          <div class="project-stack">
+            <span class="stack-item">Node.js</span>
+            <span class="stack-item">GraphQL</span>
+            <span class="stack-item">Apollo Federation</span>
+            <span class="stack-item">Redis</span>
+            <span class="stack-item">Prometheus</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-name">🤖 CLI Toolkit</div>
+            <div class="project-links">
+              <a href="#" class="project-link">GitHub</a>
+            </div>
+          </div>
+          <div class="project-desc">Herramienta CLI open source para automatización de tareas de DevOps: scaffolding de proyectos, despliegues y gestión de secretos. +200 estrellas en GitHub.</div>
+          <div class="project-stack">
+            <span class="stack-item">Python</span>
+            <span class="stack-item">Click</span>
+            <span class="stack-item">AWS SDK</span>
+            <span class="stack-item">Terraform</span>
+          </div>
+        </div>
+
+        <hr class="divider"/>
+        <div class="tags">
+          <span class="tag">#proyectos</span>
+          <span class="tag">#api</span>
+          <span class="tag">#microservicios</span>
+          <span class="tag">#open-source</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PAGE: EXPERIENCIA ─────────────────── -->
+    <div class="page" id="page-experiencia">
+      <div class="content">
+        <div class="page-title">Experiencia</div>
+        <div class="page-meta">
+          <span>📅 2025-01-01</span>
+          <span>🏷️ #experiencia #trabajo</span>
+        </div>
+
+        <h2>Trayectoria</h2>
+
+        <div class="timeline">
+
+          <div class="timeline-item">
+            <div class="timeline-date">2023 — actualidad</div>
+            <div class="timeline-title">Senior Backend Engineer</div>
+            <div class="timeline-sub">TechCorp · Madrid</div>
+            <div class="timeline-body">Diseño y desarrollo de microservicios críticos para plataforma SaaS B2B. Liderazgo técnico del equipo de infraestructura backend. Migración de monolito a arquitectura de microservicios reduciendo el tiempo de despliegue un 70%.</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">2021 — 2023</div>
+            <div class="timeline-title">Backend Developer</div>
+            <div class="timeline-sub">StartupXYZ · Remoto</div>
+            <div class="timeline-body">Desarrollo de APIs RESTful y GraphQL para aplicación fintech. Implementación de sistema de pagos integrado con Stripe y SEPA. Mejora del 40% en el rendimiento de consultas SQL mediante optimización de índices y query planning.</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">2020 — 2021</div>
+            <div class="timeline-title">Junior Backend Developer</div>
+            <div class="timeline-sub">AgencyDev · Madrid</div>
+            <div class="timeline-body">Desarrollo de backends para clientes de e-commerce. Integración con plataformas de pago y logística. Primeros pasos en Docker y CI/CD con GitHub Actions.</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">2016 — 2020</div>
+            <div class="timeline-title">Grado en Ingeniería Informática</div>
+            <div class="timeline-sub">Universidad Complutense de Madrid</div>
+            <div class="timeline-body">Especialización en Ingeniería del Software. TFG sobre optimización de consultas en bases de datos distribuidas. Nota media: 8.4/10.</div>
+          </div>
+
+        </div>
+
+        <hr class="divider"/>
+        <div class="tags">
+          <span class="tag">#experiencia</span>
+          <span class="tag">#senior</span>
+          <span class="tag">#fulltime</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PAGE: SKILLS ──────────────────────── -->
+    <div class="page" id="page-skills">
+      <div class="content">
+        <div class="page-title">Skills</div>
+        <div class="page-meta">
+          <span>📅 2025-01-01</span>
+          <span>🏷️ #skills #stack</span>
+        </div>
+
+        <h2>Lenguajes</h2>
+        <div class="skill-grid">
+          <div class="skill-card">
+            <div class="skill-card-label">Principal</div>
+            <div class="skill-card-name">TypeScript / Node.js</div>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:92%"></div></div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-card-label">Principal</div>
+            <div class="skill-card-name">Python</div>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-card-label">Secundario</div>
+            <div class="skill-card-name">Go</div>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:60%"></div></div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-card-label">Básico</div>
+            <div class="skill-card-name">Rust</div>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:30%"></div></div>
+          </div>
+        </div>
+
+        <h2>Bases de datos</h2>
+        <div class="skill-grid">
+          <div class="skill-card">
+            <div class="skill-card-label">Relacional</div>
+            <div class="skill-card-name">PostgreSQL</div>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-card-label">NoSQL</div>
+            <div class="skill-card-name">MongoDB</div>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:75%"></div></div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-card-label">Cache</div>
+            <div class="skill-card-name">Redis</div>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-card-label">Columnar</div>
+            <div class="skill-card-name">ClickHouse</div>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:55%"></div></div>
+          </div>
+        </div>
+
+        <h2>Infraestructura &amp; DevOps</h2>
+        <div class="skill-grid">
+          <div class="skill-card">
+            <div class="skill-card-label">Contenedores</div>
+            <div class="skill-card-name">Docker / K8s</div>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:82%"></div></div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-card-label">Cloud</div>
+            <div class="skill-card-name">AWS</div>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:78%"></div></div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-card-label">IaC</div>
+            <div class="skill-card-name">Terraform</div>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:65%"></div></div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-card-label">CI/CD</div>
+            <div class="skill-card-name">GitHub Actions</div>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div>
+          </div>
+        </div>
+
+        <h2>Otros</h2>
+        <div class="tags">
+          <span class="tag">REST</span>
+          <span class="tag">GraphQL</span>
+          <span class="tag">gRPC</span>
+          <span class="tag">Kafka</span>
+          <span class="tag">RabbitMQ</span>
+          <span class="tag">Prisma</span>
+          <span class="tag">SQLAlchemy</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">Express</span>
+          <span class="tag">NestJS</span>
+          <span class="tag">Jest</span>
+          <span class="tag">Pytest</span>
+          <span class="tag">Prometheus</span>
+          <span class="tag">Grafana</span>
+          <span class="tag">OpenTelemetry</span>
+          <span class="tag">Linux</span>
+          <span class="tag">Nginx</span>
+        </div>
+
+        <hr class="divider"/>
+        <div class="tags">
+          <span class="tag">#skills</span>
+          <span class="tag">#backend</span>
+          <span class="tag">#devops</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PAGE: CONTACTO ────────────────────── -->
+    <div class="page" id="page-contacto">
+      <div class="content">
+        <div class="page-title">Contacto</div>
+        <div class="page-meta">
+          <span>📅 2025-01-01</span>
+          <span>🏷️ #contacto</span>
+        </div>
+
+        <p>¿Tienes un proyecto interesante o quieres hablar sobre una oportunidad? Escríbeme.</p>
+
+        <div class="callout">
+          <div class="callout-title">✅ estado</div>
+          <p>Abierto a nuevas oportunidades — respuesta en menos de 48h.</p>
+        </div>
+
+        <h2>Canales</h2>
+        <div class="contact-grid">
+          <a href="mailto:alejandro@example.com" class="contact-item">
+            <span class="contact-icon">✉️</span>
+            <div>
+              <div class="contact-label">Email</div>
+              <div class="contact-value">alejandro@example.com</div>
+            </div>
+          </a>
+          <a href="https://github.com" target="_blank" class="contact-item">
+            <span class="contact-icon">🐙</span>
+            <div>
+              <div class="contact-label">GitHub</div>
+              <div class="contact-value">github.com/alejandro</div>
+            </div>
+          </a>
+          <a href="https://linkedin.com" target="_blank" class="contact-item">
+            <span class="contact-icon">💼</span>
+            <div>
+              <div class="contact-label">LinkedIn</div>
+              <div class="contact-value">linkedin.com/in/alejandro</div>
+            </div>
+          </a>
+          <a href="#" class="contact-item">
+            <span class="contact-icon">🐦</span>
+            <div>
+              <div class="contact-label">Twitter / X</div>
+              <div class="contact-value">@alejandrodev</div>
+            </div>
+          </a>
+        </div>
+
+        <h2>CV</h2>
+        <p>Puedes descargar mi CV actualizado en PDF o verlo en línea.</p>
+        <a href="#" class="cv-btn">📄 Descargar CV</a>
+
+        <hr class="divider"/>
+        <div class="tags">
+          <span class="tag">#contacto</span>
+          <span class="tag green">#disponible</span>
+          <span class="tag">#remoto</span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
