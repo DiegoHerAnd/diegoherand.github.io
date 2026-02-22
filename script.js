@@ -78,13 +78,26 @@ function typeTitle(el) {
 
 // ── SKILL BARS ANIMATION ─────────────────────────────────────────
 function animateSkillBars() {
-  document.querySelectorAll('.skill-bar').forEach(bar => {
-    const targetWidth = bar.style.width;
+  const bars = document.querySelectorAll('.skill-bar');
+
+  // 1. Guardar todos los anchos objetivo ANTES de tocar nada
+  const targets = Array.from(bars).map(bar => {
+    const match = bar.getAttribute('style') && bar.getAttribute('style').match(/width:\s*([^;]+)/);
+    return match ? match[1].trim() : bar.style.width || '0%';
+  });
+
+  // 2. Resetear todas a 0 sin transición
+  bars.forEach(bar => {
+    bar.style.transition = 'none';
     bar.style.width = '0%';
+  });
+
+  // 3. En el siguiente frame, aplicar transición y ancho objetivo
+  requestAnimationFrame(() => {
     requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        bar.style.transition = 'width 0.9s cubic-bezier(0.22, 1, 0.36, 1)';
-        bar.style.width = targetWidth;
+      bars.forEach((bar, i) => {
+        bar.style.transition = 'width 2.2s cubic-bezier(0.22, 1, 0.36, 1)';
+        bar.style.width = targets[i];
       });
     });
   });
@@ -131,6 +144,20 @@ function updateFooterTime() {
   footer.innerHTML = `<div class="status-dot"></div> 6 notas · ${label}`;
 }
 updateFooterTime();
+
+// ── THEME TOGGLE ─────────────────────────────────────────────────
+function toggleTheme() {
+  const btn = document.getElementById('theme-toggle');
+
+  // Animación de moneda
+  btn.classList.remove('flipping');
+  void btn.offsetWidth; // fuerza reflow para reiniciar la animación
+  btn.classList.add('flipping');
+  btn.addEventListener('animationend', () => btn.classList.remove('flipping'), { once: true });
+
+  // Cambiar tema
+  document.body.classList.toggle('light');
+}
 
 // ── INIT: Animar título de inicio al cargar ──────────────────────
 window.addEventListener('DOMContentLoaded', () => {

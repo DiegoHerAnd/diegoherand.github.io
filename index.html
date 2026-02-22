@@ -22,6 +22,26 @@
     <span class="sep">›</span>
     <span class="current" id="breadcrumb-current">inicio</span>
   </div>
+  <button class="theme-toggle" id="theme-toggle" title="Cambiar tema" onclick="toggleTheme()">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Sol (modo claro) -->
+      <g class="icon-sun">
+        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="12" y1="3" x2="12" y2="5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="12" y1="18.5" x2="12" y2="21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="3" y1="12" x2="5.5" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="18.5" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="5.6" y1="5.6" x2="7.4" y2="7.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="16.6" y1="16.6" x2="18.4" y2="18.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="18.4" y1="5.6" x2="16.6" y2="7.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="7.4" y1="16.6" x2="5.6" y2="18.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </g>
+      <!-- Luna (modo oscuro) -->
+      <g class="icon-moon">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+    </svg>
+  </button>
 </div>
 
 <!-- ── LAYOUT ──────────────────────────────────────────── -->
@@ -100,12 +120,11 @@
       <div class="content">
         <div class="page-title">Bienvenido a mi vault</div>
         <div class="page-meta">
-          <span>📅 2025-01-01</span>
-          <span>🏷️ #portfolio #backend</span>
+          <span><img src="icons/calendar.svg" class="icon-svg" /> 2025-01-01</span>
         </div>
 
         <div class="callout">
-          <div class="callout-title">💡 nota</div>
+          <div class="callout-title">nota</div>
           <p>Este es mi portfolio personal. Aquí encontrarás mis proyectos, experiencia y habilidades como desarrollador backend.</p>
         </div>
 
@@ -117,22 +136,22 @@
         <div class="skill-grid">
           <div class="skill-card" onclick="navigate('sobre-mi', null)">
             <div class="skill-card-label">→ nota</div>
-            <div class="skill-card-name">👤 Sobre mí</div>
+            <div class="skill-card-name"><img src="icons/user.svg" class="icon-svg" /> Sobre mí</div>
             <div class="skill-card-desc">Mi historia y motivaciones</div>
           </div>
           <div class="skill-card" onclick="navigate('proyectos', null)">
             <div class="skill-card-label">→ nota</div>
-            <div class="skill-card-name">📂 Proyectos</div>
+            <div class="skill-card-name"><img src="icons/folder.svg" class="icon-svg" /> Proyectos</div>
             <div class="skill-card-desc">Lo que he construido</div>
           </div>
           <div class="skill-card" onclick="navigate('experiencia', null)">
             <div class="skill-card-label">→ nota</div>
-            <div class="skill-card-name">📋 Experiencia</div>
+            <div class="skill-card-name"><img src="icons/file-text.svg" class="icon-svg" /> Experiencia</div>
             <div class="skill-card-desc">Mi trayectoria profesional</div>
           </div>
           <div class="skill-card" onclick="navigate('skills', null)">
             <div class="skill-card-label">→ nota</div>
-            <div class="skill-card-name">⚙️ Skills</div>
+            <div class="skill-card-name"><img src="icons/settings.svg" class="icon-svg" /> Skills</div>
             <div class="skill-card-desc">Stack técnico completo</div>
           </div>
         </div>
