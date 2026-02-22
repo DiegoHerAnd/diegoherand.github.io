@@ -30,7 +30,14 @@
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="sidebar-search">
-      <input type="text" id="search-input" placeholder="🔍  Buscar notas..." />
+      <div class="search-wrapper">
+        <img src="icons/search.svg" class="search-icon" />
+        <input 
+          type="text" 
+          id="search-input" 
+          placeholder="Buscar notas..." 
+        />
+      </div>
     </div>
 
     <nav class="sidebar-nav">
@@ -41,10 +48,10 @@
         </div>
         <div class="nav-items">
           <div class="nav-item active" onclick="navigate('inicio', this)">
-            <span class="icon">🏠</span> Inicio
+            <img src="icons/home.svg" class="icon-svg" /> Inicio
           </div>
           <div class="nav-item" onclick="navigate('sobre-mi', this)">
-            <span class="icon">👤</span> Sobre mí
+            <img src="icons/user.svg" class="icon-svg" />  Sobre mí
           </div>
         </div>
       </div>
@@ -55,13 +62,13 @@
         </div>
         <div class="nav-items">
           <div class="nav-item" onclick="navigate('proyectos', this)">
-            <span class="icon">📂</span> Proyectos
+            <img src="icons/folder.svg" class="icon-svg" /> Proyectos
           </div>
           <div class="nav-item" onclick="navigate('experiencia', this)">
-            <span class="icon">📋</span> Experiencia
+            <img src="icons/file-text.svg" class="icon-svg" /> Experiencia
           </div>
           <div class="nav-item" onclick="navigate('skills', this)">
-            <span class="icon">⚙️</span> Skills
+            <img src="icons/settings.svg" class="icon-svg" />  Skills
           </div>
         </div>
       </div>
