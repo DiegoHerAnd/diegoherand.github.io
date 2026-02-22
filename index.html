@@ -16,6 +16,12 @@
     <div class="dot dot-y"></div>
     <div class="dot dot-g"></div>
   </div>
+
+  <!-- Hamburguesa — solo visible en móvil -->
+  <button class="sidebar-toggle" id="sidebar-toggle" onclick="toggleSidebar()" aria-label="Abrir menú">
+    <img src="icons/list.svg" class="sidebar-toggle-icon" />
+  </button>
+
   <div class="vault-name">⬡ <span>portfolio</span>.vault</div>
   <div class="breadcrumb">
     <span>vault</span>
@@ -24,7 +30,6 @@
   </div>
   <button class="theme-toggle" id="theme-toggle" title="Cambiar tema" onclick="toggleTheme()">
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Sol (modo claro) -->
       <g class="icon-sun">
         <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/>
         <line x1="12" y1="3" x2="12" y2="5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -36,7 +41,6 @@
         <line x1="18.4" y1="5.6" x2="16.6" y2="7.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
         <line x1="7.4" y1="16.6" x2="5.6" y2="18.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
       </g>
-      <!-- Luna (modo oscuro) -->
       <g class="icon-moon">
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </g>
@@ -47,16 +51,15 @@
 <!-- ── LAYOUT ──────────────────────────────────────────── -->
 <div class="layout">
 
+  <!-- Overlay — toca para cerrar sidebar en móvil -->
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+
   <!-- SIDEBAR -->
-  <aside class="sidebar">
+  <aside class="sidebar" id="sidebar">
     <div class="sidebar-search">
       <div class="search-wrapper">
         <img src="icons/search.svg" class="search-icon" />
-        <input 
-          type="text" 
-          id="search-input" 
-          placeholder="Buscar notas..." 
-        />
+        <input type="text" id="search-input" placeholder="Buscar notas..." />
       </div>
     </div>
 
@@ -71,7 +74,7 @@
             <img src="icons/home.svg" class="icon-svg" /> Inicio
           </div>
           <div class="nav-item" onclick="navigate('sobre-mi', this)">
-            <img src="icons/user.svg" class="icon-svg" />  Sobre mí
+            <img src="icons/user.svg" class="icon-svg" /> Sobre mí
           </div>
         </div>
       </div>
@@ -88,7 +91,7 @@
             <img src="icons/file-text.svg" class="icon-svg" /> Experiencia
           </div>
           <div class="nav-item" onclick="navigate('skills', this)">
-            <img src="icons/settings.svg" class="icon-svg" />  Skills
+            <img src="icons/settings.svg" class="icon-svg" /> Skills
           </div>
         </div>
       </div>
@@ -122,16 +125,13 @@
         <div class="page-meta">
           <span><img src="icons/calendar.svg" class="icon-svg" /> 2025-01-01</span>
         </div>
-
         <div class="callout">
           <div class="callout-title">nota</div>
           <p>Este es mi portfolio personal. Aquí encontrarás mis proyectos, experiencia y habilidades como desarrollador backend.</p>
         </div>
-
         <h2>Quién soy</h2>
         <p>Soy <strong style="color:var(--text-primary)">Alejandro García</strong>, desarrollador backend con más de 4 años de experiencia construyendo APIs robustas, sistemas distribuidos y arquitecturas escalables.</p>
         <p>Me especializo en el ecosistema de <code>Node.js</code> y <code>Python</code>, con fuerte orientación hacia microservicios y buenas prácticas de ingeniería.</p>
-
         <h2>Navegación rápida</h2>
         <div class="skill-grid">
           <div class="skill-card" onclick="navigate('sobre-mi', null)">
@@ -155,7 +155,6 @@
             <div class="skill-card-desc">Stack técnico completo</div>
           </div>
         </div>
-
         <hr class="divider"/>
         <div class="tags">
           <span class="tag">#backend</span>
@@ -176,21 +175,16 @@
           <span>📅 2025-01-01</span>
           <span>🏷️ #personal</span>
         </div>
-
         <p>Desarrollador backend apasionado por la ingeniería de software limpia y los sistemas que escalan. Me gusta resolver problemas complejos con soluciones elegantes y mantenibles.</p>
-
         <div class="callout">
           <div class="callout-title">📍 ubicación</div>
           <p>Madrid, España · Disponible para remoto</p>
         </div>
-
         <h2>Enfoque</h2>
         <p>Creo firmemente en escribir código que otros puedan leer y mantener. Mi filosofía es hacer las cosas simples primero, y añadir complejidad solo cuando es necesaria y justificada.</p>
         <p>Tengo especial interés en el diseño de APIs, la observabilidad de sistemas y la automatización de procesos mediante CI/CD robusto.</p>
-
         <h2>Fuera del trabajo</h2>
         <p>Cuando no estoy programando, me encontrarás leyendo sobre sistemas distribuidos, contribuyendo a proyectos open source o explorando herramientas de productividad como <code>Obsidian</code>.</p>
-
         <hr class="divider"/>
         <div class="tags">
           <span class="tag">#sobre-mi</span>
@@ -208,7 +202,6 @@
           <span>📅 2025-01-01</span>
           <span>🏷️ #proyectos #código</span>
         </div>
-
         <p>Una selección de los proyectos más relevantes que he desarrollado, desde APIs en producción hasta herramientas internas.</p>
 
         <div class="project-card">
@@ -298,41 +291,33 @@
           <span>📅 2025-01-01</span>
           <span>🏷️ #experiencia #trabajo</span>
         </div>
-
         <h2>Trayectoria</h2>
-
         <div class="timeline">
-
           <div class="timeline-item">
             <div class="timeline-date">2023 — actualidad</div>
             <div class="timeline-title">Senior Backend Engineer</div>
             <div class="timeline-sub">TechCorp · Madrid</div>
             <div class="timeline-body">Diseño y desarrollo de microservicios críticos para plataforma SaaS B2B. Liderazgo técnico del equipo de infraestructura backend. Migración de monolito a arquitectura de microservicios reduciendo el tiempo de despliegue un 70%.</div>
           </div>
-
           <div class="timeline-item">
             <div class="timeline-date">2021 — 2023</div>
             <div class="timeline-title">Backend Developer</div>
             <div class="timeline-sub">StartupXYZ · Remoto</div>
             <div class="timeline-body">Desarrollo de APIs RESTful y GraphQL para aplicación fintech. Implementación de sistema de pagos integrado con Stripe y SEPA. Mejora del 40% en el rendimiento de consultas SQL mediante optimización de índices y query planning.</div>
           </div>
-
           <div class="timeline-item">
             <div class="timeline-date">2020 — 2021</div>
             <div class="timeline-title">Junior Backend Developer</div>
             <div class="timeline-sub">AgencyDev · Madrid</div>
             <div class="timeline-body">Desarrollo de backends para clientes de e-commerce. Integración con plataformas de pago y logística. Primeros pasos en Docker y CI/CD con GitHub Actions.</div>
           </div>
-
           <div class="timeline-item">
             <div class="timeline-date">2016 — 2020</div>
             <div class="timeline-title">Grado en Ingeniería Informática</div>
             <div class="timeline-sub">Universidad Complutense de Madrid</div>
             <div class="timeline-body">Especialización en Ingeniería del Software. TFG sobre optimización de consultas en bases de datos distribuidas. Nota media: 8.4/10.</div>
           </div>
-
         </div>
-
         <hr class="divider"/>
         <div class="tags">
           <span class="tag">#experiencia</span>
@@ -350,7 +335,6 @@
           <span>📅 2025-01-01</span>
           <span>🏷️ #skills #stack</span>
         </div>
-
         <h2>Lenguajes</h2>
         <div class="skill-grid">
           <div class="skill-card">
@@ -374,7 +358,6 @@
             <div class="skill-bar-wrap"><div class="skill-bar" style="width:30%"></div></div>
           </div>
         </div>
-
         <h2>Bases de datos</h2>
         <div class="skill-grid">
           <div class="skill-card">
@@ -398,7 +381,6 @@
             <div class="skill-bar-wrap"><div class="skill-bar" style="width:55%"></div></div>
           </div>
         </div>
-
         <h2>Infraestructura &amp; DevOps</h2>
         <div class="skill-grid">
           <div class="skill-card">
@@ -422,28 +404,18 @@
             <div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div>
           </div>
         </div>
-
         <h2>Otros</h2>
         <div class="tags">
-          <span class="tag">REST</span>
-          <span class="tag">GraphQL</span>
-          <span class="tag">gRPC</span>
-          <span class="tag">Kafka</span>
-          <span class="tag">RabbitMQ</span>
-          <span class="tag">Prisma</span>
-          <span class="tag">SQLAlchemy</span>
-          <span class="tag">FastAPI</span>
-          <span class="tag">Express</span>
-          <span class="tag">NestJS</span>
-          <span class="tag">Jest</span>
-          <span class="tag">Pytest</span>
-          <span class="tag">Prometheus</span>
-          <span class="tag">Grafana</span>
-          <span class="tag">OpenTelemetry</span>
-          <span class="tag">Linux</span>
+          <span class="tag">REST</span><span class="tag">GraphQL</span>
+          <span class="tag">gRPC</span><span class="tag">Kafka</span>
+          <span class="tag">RabbitMQ</span><span class="tag">Prisma</span>
+          <span class="tag">SQLAlchemy</span><span class="tag">FastAPI</span>
+          <span class="tag">Express</span><span class="tag">NestJS</span>
+          <span class="tag">Jest</span><span class="tag">Pytest</span>
+          <span class="tag">Prometheus</span><span class="tag">Grafana</span>
+          <span class="tag">OpenTelemetry</span><span class="tag">Linux</span>
           <span class="tag">Nginx</span>
         </div>
-
         <hr class="divider"/>
         <div class="tags">
           <span class="tag">#skills</span>
@@ -461,14 +433,11 @@
           <span>📅 2025-01-01</span>
           <span>🏷️ #contacto</span>
         </div>
-
         <p>¿Tienes un proyecto interesante o quieres hablar sobre una oportunidad? Escríbeme.</p>
-
         <div class="callout">
           <div class="callout-title">✅ estado</div>
           <p>Abierto a nuevas oportunidades — respuesta en menos de 48h.</p>
         </div>
-
         <h2>Canales</h2>
         <div class="contact-grid">
           <a href="mailto:alejandro@example.com" class="contact-item">
@@ -500,11 +469,9 @@
             </div>
           </a>
         </div>
-
         <h2>CV</h2>
         <p>Puedes descargar mi CV actualizado en PDF o verlo en línea.</p>
         <a href="#" class="cv-btn">📄 Descargar CV</a>
-
         <hr class="divider"/>
         <div class="tags">
           <span class="tag">#contacto</span>

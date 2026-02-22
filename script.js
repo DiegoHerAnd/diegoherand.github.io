@@ -36,6 +36,11 @@ function navigate(pageId, clickedItem) {
   if (pageId === 'skills') {
     setTimeout(animateSkillBars, 120);
   }
+
+  // En móvil: cerrar el sidebar al navegar
+  if (window.innerWidth <= 768) {
+    closeSidebar();
+  }
 }
 
 // ── TOGGLE SECTION ───────────────────────────────────────────────
@@ -80,19 +85,16 @@ function typeTitle(el) {
 function animateSkillBars() {
   const bars = document.querySelectorAll('.skill-bar');
 
-  // 1. Guardar todos los anchos objetivo ANTES de tocar nada
   const targets = Array.from(bars).map(bar => {
     const match = bar.getAttribute('style') && bar.getAttribute('style').match(/width:\s*([^;]+)/);
     return match ? match[1].trim() : bar.style.width || '0%';
   });
 
-  // 2. Resetear todas a 0 sin transición
   bars.forEach(bar => {
     bar.style.transition = 'none';
     bar.style.width = '0%';
   });
 
-  // 3. En el siguiente frame, aplicar transición y ancho objetivo
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       bars.forEach((bar, i) => {
@@ -148,18 +150,47 @@ updateFooterTime();
 // ── THEME TOGGLE ─────────────────────────────────────────────────
 function toggleTheme() {
   const btn = document.getElementById('theme-toggle');
-
-  // Animación de moneda
   btn.classList.remove('flipping');
-  void btn.offsetWidth; // fuerza reflow para reiniciar la animación
+  void btn.offsetWidth;
   btn.classList.add('flipping');
   btn.addEventListener('animationend', () => btn.classList.remove('flipping'), { once: true });
-
-  // Cambiar tema
   document.body.classList.toggle('light');
 }
 
-// ── INIT: Animar título de inicio al cargar ──────────────────────
+// ── SIDEBAR MÓVIL ────────────────────────────────────────────────
+const sidebar  = document.getElementById('sidebar');
+const overlay  = document.getElementById('sidebar-overlay');
+
+function openSidebar() {
+  sidebar.classList.add('open');
+  overlay.classList.add('active');
+  // Bloquear scroll del body mientras el drawer está abierto
+  document.body.style.overflow = 'hidden';
+}
+
+function closeSidebar() {
+  sidebar.classList.remove('open');
+  overlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function toggleSidebar() {
+  sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+}
+
+// Cerrar con tecla Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeSidebar();
+});
+
+// Resetear estado del sidebar si se redimensiona a desktop
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 768) {
+    closeSidebar();
+  }
+});
+
+// ── INIT ─────────────────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', () => {
   const initTitle = document.querySelector('#page-inicio .page-title');
   if (initTitle) setTimeout(() => typeTitle(initTitle), 300);
