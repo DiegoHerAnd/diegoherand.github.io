@@ -3,19 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portfolio — Backend Dev</title>
+  <title>Diego H.A. | Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="estilos.css"/>
+  <link rel="icon" href="icons/favicon.ico"/>
 </head>
 <body>
 
 <!-- ── TOPBAR ──────────────────────────────────────────── -->
 <div class="topbar">
-  <div class="topbar-dots">
-    <div class="dot dot-r"></div>
-    <div class="dot dot-y"></div>
-    <div class="dot dot-g"></div>
-  </div>
+  <svg class="topbar-noise" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="topbar-grain" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.68" numOctaves="4" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feBlend in="SourceGraphic" mode="soft-light"/>
+    </filter>
+  </defs>
+  <rect width="100%" height="100%" filter="url(#topbar-grain)" opacity="0.12"/>
+</svg>
 
   <!-- Hamburguesa — solo visible en móvil -->
   <button class="sidebar-toggle" id="sidebar-toggle" onclick="toggleSidebar()" aria-label="Abrir menú">
