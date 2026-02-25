@@ -372,7 +372,7 @@ body:not(.light) .nav-item.active { color: #4FA3D1; background: rgba(79, 163, 20
 .page-meta {
   font-size: 10px; color: var(--text-muted);
   margin-bottom: 40px;
-  display: flex; align-items: center; gap: 16px;
+  display: flex; align-items: center; gap: 5px;
   letter-spacing: 0.02em;
 }
 .page-meta span { display: flex; align-items: center; gap: 4px; }

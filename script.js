@@ -136,15 +136,31 @@ if (vaultName) {
 function updateFooterTime() {
   const footer = document.querySelector('.sidebar-footer');
   if (!footer) return;
+
   const hour = new Date().getHours();
+
   let label;
-  if (hour < 6)       label = 'actualizado de madrugada';
+  if      (hour < 6)  label = 'actualizado de madrugada';
   else if (hour < 12) label = 'actualizado esta mañana';
   else if (hour < 14) label = 'actualizado al mediodía';
   else if (hour < 20) label = 'actualizado esta tarde';
   else                label = 'actualizado esta noche';
+
   footer.innerHTML = `<div class="status-dot"></div> 6 notas · ${label}`;
+
+  // Tema según hora: modo claro de 7h a 20h, oscuro el resto
+  const shouldBeLight = hour >= 7 && hour < 20;
+  const isLight = document.body.classList.contains('light');
+
+  if (shouldBeLight && !isLight) {
+    document.body.classList.add('light');
+    localStorage.setItem('theme', 'light');
+  } else if (!shouldBeLight && isLight) {
+    document.body.classList.remove('light');
+    localStorage.setItem('theme', 'dark');
+  }
 }
+
 updateFooterTime();
 
 // ── THEME TOGGLE ─────────────────────────────────────────────────
